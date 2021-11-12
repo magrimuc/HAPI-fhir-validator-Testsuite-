@@ -17,8 +17,8 @@ $Testfall = $Table.Cells.Item($zeile,$spalte).Text
 $TestConsoleOut =
 $argList = Join-String -Strings "-jar ..\reference-validator-cli-0.1.0-SNAPSHOT.jar ",testfälle\,$Testfall
 $ret = Start-Process -FilePath java -ArgumentList $argList -RedirectStandardOutput ( Join-String -Strings out\$Testfall,out.txt) -wait
-
-Out-String -InputObject $Testfall
+Get-Content -Path (Join-String -Strings out\$zeile,out.txt) -Tail 1
+#Out-String -InputObject $Testfall
 $zeile++
 #ASSERT
 #Compare-Object (Get-Content IST) (Get-Content SOLL)
