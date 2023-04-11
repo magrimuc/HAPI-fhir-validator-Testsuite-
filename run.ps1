@@ -1,8 +1,9 @@
 # Automated test in 3 parts: arrange act assert
 #ARRANGE
+#PATHs to java (line 19), reference-validator (line 19) and Testf�lle.xls (idnk) (saved to ~ e.g.) unfortunatelly still a mess
 # Daten aus Excel Datei auslesen
 $pwd = &"pwd"
-$dateipfad = Join-String -Strings $pwd.Path,\testfälle\Testfälle.xlsx
+$dateipfad = Join-String -Strings $pwd.Path,\HAPI-fhir-validator-Testsuite-\Testf�lle.xlsx
 $tabelle = "Test"
 [int]$zeile = 2
 [int]$spalte = 1
@@ -14,23 +15,22 @@ $Table =$workbook.Worksheets.Item($tabelle)
 do {
 #ACT
 $Testfall = $Table.Cells.Item($zeile,$spalte).Text
-$TestConsoleOut =
-$argList = Join-String -Strings "-jar ..\reference-validator-cli-0.1.0-SNAPSHOT.jar ",testfälle\,$Testfall
-$ret = Start-Process -FilePath java -ArgumentList $argList -RedirectStandardOutput ( Join-String -Strings out\$Testfall,out.txt) -wait
-Get-Content -Path (Join-String -Strings out\$zeile,out.txt) -Tail 1
-#Out-String -InputObject $Testfall
-$zeile++
-#ASSERT
-#Compare-Object (Get-Content IST) (Get-Content SOLL)
-(get-content ( Join-String -Strings $Testfall,out.txt))
-#(get-content ( Join-String -Strings testfälle\,SOLL,$Testfall,out.txt))
 
-#Compare-Object -DifferenceObject (get-content ( Join-String -Strings $Testfall,out.txt)) -ReferenceObject (get-content ( Join-String -Strings testfälle\,SOLL,$Testfall,out.txt))
-# TODO: Excel write return value to ($zeile, $spalte +2)
+$erg = C:\W2\jrew\bin\java -jar C:\Users\mnkuemme\Documents\eRez\github\reference-validator-cli-1.0.1.jar $Testfall | Select-Object -Last 1
+Write-Output $erg 
+
+$Table.Cells.Item($zeile,$spalte+3) = $erg
+
+$zeile++
+
 }
 while($Table.Cells.Item($zeile,$spalte).Text.Length -gt 0)
+
+$Workbook.Save()
+[System.Runtime.Interopservices.Marshal]::ReleaseComObject($Workbook)
 
 $Excel.Quit()
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($excel)
 
 #EOF
+#ASSERTIONs in Excel
