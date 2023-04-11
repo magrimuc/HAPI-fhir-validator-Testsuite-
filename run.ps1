@@ -1,9 +1,9 @@
 # Automated test in 3 parts: arrange act assert
 #ARRANGE
-#PATHs to java (line 19), reference-validator (line 19) and Testfälle.xls (idnk) (saved to ~ e.g.) unfortunatelly still a mess
+#PATHs to java (line 19), reference-validator (line 19) and Testfï¿½lle.xls (idnk) (saved to ~ e.g.) unfortunatelly still a mess
 # Daten aus Excel Datei auslesen
 $pwd = &"pwd"
-$dateipfad = Join-String -Strings $pwd.Path,\HAPI-fhir-validator-Testsuite-\Testfälle.xlsx
+$dateipfad = Join-String -Strings $pwd.Path,.\HAPI-fhir-validator-Testsuite-\Testfälle.xlsx
 $tabelle = "Test"
 [int]$zeile = 2
 [int]$spalte = 1
