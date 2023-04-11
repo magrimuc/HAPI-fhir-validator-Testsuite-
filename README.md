@@ -5,6 +5,7 @@ Wer diese Testumgebung nutzen möchte, sollte wissen:
 2. Passe den Java Pfad von C:\W2\jrew\bin\java auf Deine Umgebung an
 3. (selbe Zeile 19) Kümmere Dich um (Download und Pfad von) "-jar C:\Users\mnkuemme\Documents\eRez\github\reference-validator-cli-1.0.1.jar"
 4. Im Excel WILL man dann Ausgaben des Validators heutiger Ausführung mit früheren Ausgaben vergleichen
+5. Rufe Script  .\HAPI-fhir-validator-Testsuite-\run.ps1 (von knapp außerhalb des Repos) auf
 
 
 aim: testingsuite for github project https://github.com/DAV-ABDA/eRezept-HAPI-Referenzimplementierung uses: excel &amp; powershell &amp; java
