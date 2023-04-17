@@ -30,6 +30,7 @@ $zeile++
 }
 while($Table.Cells.Item($zeile,$spalte).Text.Length -gt 0)
 
+#speichert in Home/Documents verzeichnis
 $Workbook.Save()
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($Workbook)
 
