@@ -16,8 +16,9 @@ do {
 $Testfall = Join-String -Strings $pwd.Path, $Table.Cells.Item($zeile,$spalte).Text
 
 $erg = C:\W2\jrew\bin\java -jar C:\Users\mnkuemme\Documents\eRez\github\reference-validator-cli-1.0.1.jar $Testfall | Select-Object -Last 1
-$er= Split-String -Input $erg.Text -Separator "--"
-$Table.Cells.Item($zeile,$spalte+3) = $er[1]
+
+
+$Table.Cells.Item($zeile,$spalte+3) = $erg
 
 $zeile++
 
